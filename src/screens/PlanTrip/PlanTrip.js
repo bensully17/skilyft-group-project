@@ -6,10 +6,16 @@ import mainTabs from '../Navigation/MainTabs/startMainTabs'
 import MtnPicker from '../../components/Picker/MtnPicker'
 class DatePicker extends Component {
   state = {
-    language: null
+    language: null,
+    switch: false
   }
   startMainTabs = () => {
     mainTabs()
+  }
+
+  runSwitch = () => {
+    let onOff = this.state.switch
+    this.setState({switch: !onOff})
   }
   render() {
     return(
@@ -21,8 +27,8 @@ class DatePicker extends Component {
           <MtnPicker/>
         </View>
         <View style={styles.switch}>
-          <Text>Willing to drive?</Text>
-          <Switch></Switch>
+          <Text style={styles.switchText}>Willing to drive?</Text>
+          <Switch value={this.state.switch} onValueChange={this.runSwitch}></Switch>
         </View>
         <View style={styles.button}>
           <Button title='Submit' onPress={this.startMainTabs}></Button>
@@ -50,6 +56,9 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     alignItems: 'center'  
+  },
+  switchText: {
+    paddingBottom: 10
   },
   mtnPicker: {
     justifyContent: 'center',

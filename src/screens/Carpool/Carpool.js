@@ -36,6 +36,12 @@ const cards = [
     image: require('../../Assets/ListPhotos/jacob.png'),
     vehicle: 'Marty McFly\'s DeLorean',
     location: 'Denver, CO'
+  },
+  {
+    text: 'Catfish',
+    name: '',
+    image: require('../../Assets/ListPhotos/snowbunny.jpg'),
+    vehicle: 'Want a ride? ;)'
   }
 ];
 export default class List extends Component {
