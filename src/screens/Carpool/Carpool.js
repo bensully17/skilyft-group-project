@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Image } from 'react-native';
 import { Container, Header, View, DeckSwiper, Card, CardItem, Thumbnail, Text, Left, Body, Icon } from 'native-base';
+
+const API_URL = 'https://skylift-db.herokuapp.com/riders'
+const placeHolderImage = ''
+
 const cards = [
   {
     text: 'Ben Sullivan',
@@ -45,30 +49,38 @@ const cards = [
   }
 ];
 export default class List extends Component {
+  state = {
+    users: {}
+  }
+  componentDidMount() {
+    fetch(API_URL)
+      .then(response => response.json())
+      .then(response => this.setState({users: response['riders']}))
+  }
   render() {
     return (
       <Container>   
         <Header />
         <View>
           <DeckSwiper
-            dataSource={cards}
+            dataSource={this.state.users}
             renderItem={item =>
               <Card style={{ elevation: 3 }}>
                 <CardItem>
                   <Left>
-                    <Thumbnail source={item.image} />
+                    <Thumbnail source={require('../../Assets/ListPhotos/skilyft-ben.jpg')} />
                     <Body>
-                      <Text>{item.text}</Text>
-                      <Text note>{item.location}</Text>
+                      <Text>{item.userName}</Text>
+                      <Text note>{item.userName}</Text>
                     </Body>
                   </Left>
                 </CardItem>
                 <CardItem cardBody>
-                  <Image style={{ height: 300, flex: 1 }} source={item.image} />
+                  <Image style={{ height: 300, flex: 1 }} source={require('../../Assets/ListPhotos/skilyft-ben.jpg')} />
                 </CardItem>
                 <CardItem>
                   <Icon name="ios-car" style={{ color: '#333' }} />
-                  <Text>{item.name}  -  Vehicle: {item.vehicle}</Text>
+                  <Text>{item.userName}  -  Vehicle: {item.userName}</Text>
                 </CardItem>
               </Card>
             }

@@ -3,14 +3,22 @@ import { View, Text, Image, StyleSheet, TextInput, Button } from 'react-native';
 import PickImage from '../../components/PickImage/PickImage'
 
 class Profile extends Component {
+  saveProfile = () => {
+
+  }
   render () {
     return (
       <View style={styles.container}>
-        <PickImage/>
+        <View style={styles.pickImage}>
+          <PickImage/>
+        </View>
         <View style={styles.inputContainer}>
           <TextInput style={styles.textInput} placeholder='Name'/>
           <TextInput style={styles.textInput} placeholder='Vehicle Year'/>
           <TextInput style={styles.textInput} placeholder='Vehicle Make and Model'/>
+        </View>
+        <View style={styles.saveButton}>
+          <Button title='Save' onPress={this.saveProfile}/>
         </View>
       </View>
     )
@@ -32,10 +40,17 @@ const styles = StyleSheet.create({
     margin: 8
   },
   inputContainer: {
-    width: '80%'
+    flex: 2,
+    width: '80%',
+    paddingBottom: '5%'
   },
-  PickImage: {
-    width: '80%'
+  pickImage: {
+    flex: 6,
+    width: '80%',
+    marginTop: '5%'
+  },
+  saveButton: {
+    flex: 1
   }
 })
 export default Profile

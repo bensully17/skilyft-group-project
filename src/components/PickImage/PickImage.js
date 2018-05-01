@@ -15,7 +15,7 @@ class PickImage extends Component {
       }
       else {
         this.setState({
-          pickedImage: { uri: res.uri}
+          pickedImage: { uri: res.uri, base64: res.data }
         })
       }
     })
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     borderColor: "black",
     backgroundColor: "#eee",
     width: "80%",
-    height: '60%'
+    height: '70%'
   },
   button: {
     margin: 8
