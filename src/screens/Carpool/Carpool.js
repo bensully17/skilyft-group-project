@@ -68,7 +68,7 @@ export default class List extends Component {
               <Card style={{ elevation: 3 }}>
                 <CardItem>
                   <Left>
-                    <Thumbnail source={require('../../Assets/ListPhotos/skilyft-ben.jpg')} />
+                    <Thumbnail source={require('../../Assets/ListPhotos/snowbunny.jpg')} />
                     <Body>
                       <Text>{item.userName}</Text>
                       <Text note>{item.userName}</Text>
@@ -76,7 +76,7 @@ export default class List extends Component {
                   </Left>
                 </CardItem>
                 <CardItem cardBody>
-                  <Image style={{ height: 300, flex: 1 }} source={require('../../Assets/ListPhotos/skilyft-ben.jpg')} />
+                  <Image style={{ height: 300, flex: 1 }} source={require('../../Assets/ListPhotos/snowbunny.jpg')} />
                 </CardItem>
                 <CardItem>
                   <Icon name="ios-car" style={{ color: '#333' }} />
