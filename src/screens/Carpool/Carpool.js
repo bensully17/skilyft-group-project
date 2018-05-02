@@ -80,7 +80,7 @@ export default class List extends Component {
                 </CardItem>
                 <CardItem>
                   <Icon name="ios-car" style={{ color: '#333' }} />
-                  <Text>{item.userName}  -  Vehicle: {item.userName}</Text>
+                  <Text>{item.userName}  -  Vehicle: {item.vehicle}</Text>
                 </CardItem>
               </Card>
             }
