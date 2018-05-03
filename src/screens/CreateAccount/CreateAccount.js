@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import { View, Text, Button, TextInput, StyleSheet, ImageBackground} from 'react-native'
-import image from '../../Assets/mountains.png'
+import image from '../../Assets/SkiLyft1.png'
 import startMainTabs from '../Navigation/MainTabs/startMainTabs'
+import CustomButton from '../../components/CustomButton/CustomButton'
 
 class CreateAccountScreen extends Component {
   loginHandler = () => {
-    startMainTabs()
+    this.props.navigator.push({
+      screen: 'skilyft.ProfileScreen',
+      animationType: 'fade',
+      backButtonHidden: true
+    })
+    
   }
   returnHandler = () => {
     this.props.navigator.push({
@@ -19,12 +25,12 @@ class CreateAccountScreen extends Component {
       <ImageBackground source={image} style={styles.image}>
         <View style={styles.container}>
           <Text style={styles.textHeading}>Create new Account</Text>
-          <Button title='Return to Login' onPress={this.returnHandler}></Button>
+          <CustomButton title='Return to Login' onPress={this.returnHandler} color={'#efefef'}>Return to Login</CustomButton>
           <View style={styles.inputContainer}>
             <TextInput placeholder='Username' style={styles.input} underlineColorAndroid='transparent'/>
             <TextInput placeholder='Password' style={styles.input} secureTextEntry underlineColorAndroid='transparent'/>
           </View>
-          <Button title='Submit' onPress={this.loginHandler}></Button>
+          <CustomButton title='Submit' onPress={this.loginHandler} style={styles.input} color={'#efefef'}>Submit</CustomButton>
         </View>
       </ImageBackground> 
     )
@@ -51,17 +57,21 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: '#eee',
     borderColor: '#bbb',
+    borderRadius: 4,
     padding: 5,
     margin: 8
   },
   textHeading: {
-    fontSize: 28,
-    fontWeight: 'bold',
+    paddingTop: '30%',
+    fontSize: 24,
     paddingBottom: '30%'
   },
   image: {
     flex: 1,
     alignItems: 'center'
+  },
+  button: {
+    backgroundColor: '#efefef'
   }
 })
 

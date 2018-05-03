@@ -4,13 +4,18 @@ import PickImage from '../../components/PickImage/PickImage'
 
 class Profile extends Component {
   saveProfile = () => {
-
+    this.props.navigator.push({
+      screen: 'skilyft.PlanTripIOS',
+      title: 'Plan Your Trip',
+      animationType: 'fade',
+      backButtonHidden: true
+    })
   }
   render () {
     return (
       <View style={styles.container}>
         <View style={styles.pickImage}>
-          <PickImage/>
+          <PickImage style={styles.pickImage}/>
         </View>
         <View style={styles.inputContainer}>
           <TextInput style={styles.textInput} placeholder='Name'/>
@@ -47,7 +52,8 @@ const styles = StyleSheet.create({
   pickImage: {
     flex: 6,
     width: '80%',
-    marginTop: '5%'
+    marginTop: '5%',
+    borderRadius: 4
   },
   saveButton: {
     flex: 1
