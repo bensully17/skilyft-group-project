@@ -62,7 +62,7 @@ class PlanTrip extends Component {
     console.log(this.state)
   }
 
-  mtnChangeHandler = (event) => {        
+  destChangeHandler = (event) => {        
     this.setState({
       destination: event
     })
@@ -77,7 +77,7 @@ class PlanTrip extends Component {
           <DatePickerIOS date={this.state.departing} onDateChange={this.setDate}/>  
         </View>
         <View style={styles.mtnPicker}>
-          <MtnPicker currentMtn={this.state.destination} changed={this.mtnChangeHandler}/>
+          <MtnPicker currentMtn={this.state.destination} changed={this.destChangeHandler}/>
         </View>
         <View style={styles.drive}>
           <Text style={styles.switchText}>Willing to drive?</Text>
