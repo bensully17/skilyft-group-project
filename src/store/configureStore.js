@@ -1,6 +1,6 @@
 import { createStore, combineReducers } from 'redux'
 
-import ridersReducer from './reducers/root'
+import ridersReducer from './reducers/riders'
 
 const rootReducer = combineReducers({
   riders: ridersReducer

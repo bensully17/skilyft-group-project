@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import { View, Button, StyleSheet, Switch, Text, Picker, DatePickerIOS } from 'react-native'
 import mainTabs from '../Navigation/MainTabs/startMainTabs'
 import MtnPicker from '../../components/Picker/MtnPicker'
+import { connect } from 'react-redux'
+import { changeDest, setDate, switchDrive } from '../../store/actions/index'
 const API_URL = 'https://skylift-db.herokuapp.com/riders/match'
 
 let departing
@@ -121,4 +123,10 @@ const styles = StyleSheet.create({
     alignItems: 'center'  
   }
 })
-export default PlanTrip
+
+const mapDispatchToProps = dispatch => {
+  return {
+
+  }
+}
+export default connect() (PlanTrip)
