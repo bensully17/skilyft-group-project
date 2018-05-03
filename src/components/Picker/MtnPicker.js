@@ -1,26 +1,11 @@
 import React, { Component } from "react";
 import { Container, Header, Title, Content, Button, Icon, Right, Body, Left, Picker, Form } from "native-base";
-export default class MtnPicker extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selected2: undefined
-    };
-  }
-  onValueChange2(value: string) {
-    this.setState({
-      selected2: value
-    });
-  }
-  render() {
+
+
+const MtnPicker = (props) => {
     return (
       <Container>
-        {/* <Header>
-          <Body>
-            <Title>Choose Destination</Title>
-          </Body>
-          <Right />
-        </Header> */}
+      
         <Content>
           <Form>
             <Picker
@@ -30,18 +15,20 @@ export default class MtnPicker extends Component {
               placeholderStyle={{ color: "black" }}
               placeholderIconColor="#007aff"
               style={{ width: '100%' }}
-              selectedValue={this.state.selected2}
-              onValueChange={this.onValueChange2.bind(this)}
+              selectedValue={props.currentMtn}
+              onValueChange={props.changed}
             >
-              <Picker.Item label="Vail" value="key0" />
-              <Picker.Item label="A Basin" value="key1" />
-              <Picker.Item label="Kayestone" value="key2" />
-              <Picker.Item label="Breck" value="key3" />
-              <Picker.Item label="Winter Park" value="key4" />
+              <Picker.Item label="Vail" value="Vail" />
+              <Picker.Item label="Arapahoe Basin" value="Arapahoe Basin" />
+              <Picker.Item label="Keystone" value="Keystone" />
+              <Picker.Item label="Breck" value="Breck" />
+              <Picker.Item label="Winter Park" value="Winter Park" />
             </Picker>
           </Form>
         </Content>
       </Container>
-    );
-  }
+    )
 }
+
+export default MtnPicker
+  

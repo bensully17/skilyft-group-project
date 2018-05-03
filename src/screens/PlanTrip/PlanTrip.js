@@ -1,40 +1,94 @@
 
 import React, { Component } from 'react'
-import { View, Button, StyleSheet, Switch, Text, Picker } from 'react-native'
-import DatePickerIOS from '../../components/DatePickerIOS/DatePicker'
+import { View, Button, StyleSheet, Switch, Text, Picker, DatePickerIOS } from 'react-native'
 import mainTabs from '../Navigation/MainTabs/startMainTabs'
 import MtnPicker from '../../components/Picker/MtnPicker'
-class DatePicker extends Component {
-  state = {
-    language: null,
-    switch: false
+const API_URL = 'https://skylift-db.herokuapp.com/riders/match'
+
+let departing
+
+class PlanTrip extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      drive: false,
+      departing: new Date(),
+      destination: undefined,
+      imageUrl: "https://s3-us-west-1.amazonaws.com/skilyft-photos/skilyft-ben.jpg",
+      userName: "Ben",
+      firstName: "Ben",
+      lastName: "Sullivan",
+      vehicle: "2011 range rover sport"
+    }
   }
+ 
   startMainTabs = () => {
-    mainTabs()
+    const stateNow = {
+      drive: this.state.drive,
+      departing: this.state.departing,
+      destination: this.state.destination,
+      imageUrl: this.state.imageUrl,
+      userName: this.state.userName,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      vehicle: this.state.vehicle
+    }    
+    fetch(API_URL, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(stateNow),
+    })
+    .then(res => res.json())
+    .then(res => {
+      this.props.navigator.push({
+        screen: 'skilyft.CarpoolScreen',
+        title: 'Carpoolers',
+        passProps: {res}
+      })
+    }) 
+    // mainTabs()
   }
 
   runSwitch = () => {
-    let onOff = this.state.switch
-    this.setState({switch: !onOff})
+    let onOff = this.state.drive
+    this.setState({drive: !onOff})
   }
+
+  setDate = (newDate) => {
+    this.setState({departing: newDate})
+    console.log(this.state)
+  }
+
+  mtnChangeHandler = (event) => {        
+    this.setState({
+      destination: event
+    })
+    console.log(this.state)
+
+  }
+
   render() {
     return(
       <View style={styles.container}>
         <View style={styles.datePicker}>
-          <DatePickerIOS />  
+          <DatePickerIOS date={this.state.departing} onDateChange={this.setDate}/>  
         </View>
         <View style={styles.mtnPicker}>
-          <MtnPicker/>
+          <MtnPicker currentMtn={this.state.destination} changed={this.mtnChangeHandler}/>
         </View>
-        <View style={styles.switch}>
+        <View style={styles.drive}>
           <Text style={styles.switchText}>Willing to drive?</Text>
-          <Switch value={this.state.switch} onValueChange={this.runSwitch}></Switch>
+          <Switch value={this.state.drive} onValueChange={this.runSwitch}></Switch>
         </View>
         <View style={styles.button}>
           <Button title='Submit' onPress={this.startMainTabs}></Button>
         </View>
       </View>
     )
+    console.log(this.state.date)
   }
 }
 
@@ -51,7 +105,7 @@ const styles = StyleSheet.create({
   button: {
     flex: 1
   },
-  switch: {
+  drive: {
     justifyContent: 'center',
     flex: 1,
     width: '100%',
@@ -67,4 +121,4 @@ const styles = StyleSheet.create({
     alignItems: 'center'  
   }
 })
-export default DatePicker
+export default PlanTrip

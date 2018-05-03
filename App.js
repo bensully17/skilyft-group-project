@@ -3,7 +3,7 @@ import AuthScreen from './src/screens/Auth/Auth';
 import CarpoolScreen from './src/screens/Carpool/Carpool'
 import ProfileScreen from './src/screens/Profile/Profile'
 import CreateAccountScreen from './src/screens/CreateAccount/CreateAccount'
-import DatePickerIOS from './src/screens/PlanTrip/PlanTrip'
+import PlanTrip from './src/screens/PlanTrip/PlanTrip'
 
 // Register Screens 
 
@@ -11,7 +11,7 @@ Navigation.registerComponent('skilyft.AuthScreen', () => AuthScreen)
 Navigation.registerComponent('skilyft.CarpoolScreen', () => CarpoolScreen)
 Navigation.registerComponent('skilyft.ProfileScreen', () => ProfileScreen)
 Navigation.registerComponent('skilyft.CreateAccountScreen', () => CreateAccountScreen)
-Navigation.registerComponent('skilyft.PlanTripIOS', () => DatePickerIOS)
+Navigation.registerComponent('skilyft.PlanTripIOS', () => PlanTrip)
 
 //Start an app
 Navigation.startSingleScreenApp({
