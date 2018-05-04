@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, TextInput, Button } from 'react-native';
+import { View, Text, Image, StyleSheet, TextInput, Button, ImageBackground } from 'react-native';
 import ImagePicker from 'react-native-image-picker'
 import PickImage from '../../components/PickImage/PickImage'
+import image from '../../Assets/SkiLyftOverlay.png'
 
 class Profile extends Component {
   state = {
@@ -65,23 +66,28 @@ class Profile extends Component {
   }
   render () {
     return (
-      <View style={styles.container}>
-        <View style={styles.pickImage}>
-          <PickImage style={styles.pickImage} selectImage={this.pickImageHandler} selectedImage={this.state.selectedImage}/>
+      <ImageBackground style={styles.ImageBackground} source={image}>
+        <View style={styles.container}>
+          <View style={styles.pickImage}>
+            <PickImage style={styles.pickImage} selectImage={this.pickImageHandler} selectedImage={this.state.selectedImage}/>
+          </View>
+          <View style={styles.inputContainer}>
+            <TextInput style={styles.textInput} placeholder='Full Name' onChange={this.nameChangeHandler}/>
+            <TextInput style={styles.textInput} placeholder='Vehicle Year, Make, and Model' onChange={this.vehicleChange}/>
+          </View>
+          <View style={styles.saveButton}>
+            <Button title='Save' onPress={this.saveProfile}/>
+          </View>
         </View>
-        <View style={styles.inputContainer}>
-          <TextInput style={styles.textInput} placeholder='Full Name' onChange={this.nameChangeHandler}/>
-          <TextInput style={styles.textInput} placeholder='Vehicle Year, Make, and Model' onChange={this.vehicleChange}/>
-        </View>
-        <View style={styles.saveButton}>
-          <Button title='Save' onPress={this.saveProfile}/>
-        </View>
-      </View>
+      </ImageBackground>
     )    
   }
 }
 
 const styles = StyleSheet.create({
+  ImageBackground: {
+    flex: 1
+  },
   container: {
     flex: 1,
     justifyContent: 'center',

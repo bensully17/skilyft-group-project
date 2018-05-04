@@ -104,7 +104,6 @@ class PlanTripNew extends Component {
             <CustomButton title='Submit' onPress={this.startMainTabs} style={styles.customButton} color='#efefef'>Submit</CustomButton>
           </View>
         </View>
-        <Button title={'Show State'} onPress={this.showState}></Button>
       </ImageBackground>
     )
     console.log(this.state.date)
