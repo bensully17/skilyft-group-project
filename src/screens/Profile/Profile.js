@@ -7,7 +7,8 @@ class Profile extends Component {
   state = {
     selectedImage: null,
     name: '',
-    vehicle: ''
+    vehicle: '',
+    imageLink: ''
   }
   saveProfile = () => {
     fetch('https://us-central1-skilyft.cloudfunctions.net/storeImage', {
@@ -16,18 +17,17 @@ class Profile extends Component {
         image: this.state.selectedImage.base64
       })
     })
-    .catch(err => console.error(err))
     .then(res => res.json())
-    .then(parsedRes => console.log(parsedRes))
-    .then(
-      this.props.navigator.push({
-        screen: 'skilyft.PlanTripIOS',
-        title: 'Plan Your Trip',
-        backButtonHidden: true
-      })
-    )
-    
+    .then(result => {
+      console.log(result)
+      this.setState({imageLink: result.imageUrl})
+      this.planCarpool() 
+    })
+    // .then(
+    //   this.planCarpool()
+    // )
   }
+      
  
   pickImageHandler = () => {
     ImagePicker.showImagePicker({title: 'Select an Image'}, res => {
@@ -43,6 +43,26 @@ class Profile extends Component {
     })
   }
 
+  planCarpool = () => {
+    // console.log(this.state)
+    this.props.navigator.push({
+      screen: 'skilyft.PlanTripNew',
+      title: 'Plan Your Trip',
+      backButtonHidden: true,
+      passProps: {
+        name: this.state.name,
+        vehicle: this.state.vehicle,
+        imageUrl: this.state.imageLink
+      }
+    })
+  }
+  nameChangeHandler = (event) => {
+    console.log(event.nativeEvent.text);
+    this.setState({name: event.nativeEvent.text})
+  }
+  vehicleChange = (event) => {
+    this.setState({vehicle: event.nativeEvent.text})
+  }
   render () {
     return (
       <View style={styles.container}>
@@ -50,8 +70,8 @@ class Profile extends Component {
           <PickImage style={styles.pickImage} selectImage={this.pickImageHandler} selectedImage={this.state.selectedImage}/>
         </View>
         <View style={styles.inputContainer}>
-          <TextInput style={styles.textInput} placeholder='Full Name' onChange={val => this.setState({name: val})}/>
-          <TextInput style={styles.textInput} placeholder='Vehicle Year, Make, and Model' onChange={val => this.setState({vehicle: val})}/>
+          <TextInput style={styles.textInput} placeholder='Full Name' onChange={this.nameChangeHandler}/>
+          <TextInput style={styles.textInput} placeholder='Vehicle Year, Make, and Model' onChange={this.vehicleChange}/>
         </View>
         <View style={styles.saveButton}>
           <Button title='Save' onPress={this.saveProfile}/>

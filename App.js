@@ -6,6 +6,7 @@ import CarpoolScreen from './src/screens/Carpool/Carpool'
 import ProfileScreen from './src/screens/Profile/Profile'
 import CreateAccountScreen from './src/screens/CreateAccount/CreateAccount'
 import PlanTrip from './src/screens/PlanTrip/PlanTrip'
+import PlanTripNew from './src/screens/PlanTrip/PlanTripNewUser'
 
 const store = configureStore()
 // Register Screens 
@@ -15,6 +16,7 @@ Navigation.registerComponent('skilyft.CarpoolScreen', () => CarpoolScreen, store
 Navigation.registerComponent('skilyft.ProfileScreen', () => ProfileScreen, store, Provider)
 Navigation.registerComponent('skilyft.CreateAccountScreen', () => CreateAccountScreen, store, Provider)
 Navigation.registerComponent('skilyft.PlanTripIOS', () => PlanTrip, store, Provider)
+Navigation.registerComponent('skilyft.PlanTripNew', () => PlanTripNew, store, Provider)
 
 //Start an app
 Navigation.startSingleScreenApp({

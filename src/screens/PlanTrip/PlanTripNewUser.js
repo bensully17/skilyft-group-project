@@ -7,22 +7,22 @@ import MtnPicker from '../../components/Picker/MtnPicker'
 import { connect } from 'react-redux'
 import { changeDest, setDate, switchDrive } from '../../store/actions/index'
 import CustomButton from '../../components/CustomButton/CustomButton'
-const API_URL = 'https://skylift-db.herokuapp.com/riders/match'
+const API_URL = 'https://skylift-db.herokuapp.com/riders'
 
 let departing
 
-class PlanTrip extends Component {
+class PlanTripNew extends Component {
   constructor(props) {
     super(props)
     this.state = {
       drive: false,
       departing: new Date(),
       destination: undefined,
-      imageUrl: "",
-      userName: "",
-      firstName: "",
-      lastName: "",
-      vehicle: ""
+      imageUrl: props.imageUrl,
+      userName: props.name,
+      firstName: props.name,
+      lastName: props.name,
+      vehicle: props.vehicle
     }
   }
  
@@ -36,8 +36,16 @@ class PlanTrip extends Component {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       vehicle: this.state.vehicle
-    }    
+    } 
     fetch(API_URL, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(stateNow),
+    })   
+    fetch(API_URL + '/match', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -73,6 +81,11 @@ class PlanTrip extends Component {
 
   }
 
+  showState = () => {
+    console.log(this.state);
+    
+  }
+
   render() {
     return(
       <ImageBackground source={image} style={styles.image}>
@@ -91,6 +104,7 @@ class PlanTrip extends Component {
             <CustomButton title='Submit' onPress={this.startMainTabs} style={styles.customButton} color='#efefef'>Submit</CustomButton>
           </View>
         </View>
+        <Button title={'Show State'} onPress={this.showState}></Button>
       </ImageBackground>
     )
     console.log(this.state.date)
@@ -142,4 +156,4 @@ const mapDispatchToProps = dispatch => {
 
   }
 }
-export default connect() (PlanTrip)
+export default connect() (PlanTripNew)
