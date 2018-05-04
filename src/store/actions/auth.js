@@ -1,14 +1,15 @@
 import { TRY_AUTH } from './actionTypes'
+import TripPlanner from '../../screens/Navigation/DatePickerIOS/DatePicker'
+import Profile from '../../screens/Navigation/StartProfile/Profile'
 
-export const tryAuth = (authData) => {
+export const tryAuth = (authData, authMode) => {
   return dispatch => {
-    dispatch(authSignup(authData))
-  }
-}
-
-export const authSignup = (authData) => {
-  return dispatch => {
-    fetch('https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyA_9tzGnz4okwb5i4047pRSNedUEpc9FwI', {
+    const API_KEY = 'AIzaSyA_9tzGnz4okwb5i4047pRSNedUEpc9FwI'
+    let URL = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=' + API_KEY
+    if (authMode === 'signup') {
+      URL = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=' + API_KEY
+    }
+    fetch(URL, {
       method: 'POST',
       body: JSON.stringify({
         email: authData.email,
@@ -25,6 +26,16 @@ export const authSignup = (authData) => {
     })
     .then(res => res.json())
     .then(parsedRes => {
+      if (parsedRes.error) {
+        alert('Authentication failed, please try again.')
+      }
+      else if (authMode === 'login'){
+        TripPlanner()
+        }
+      else if (authMode === 'signup'){
+        Profile()
+      }
+      
       console.log(parsedRes);
       
     })

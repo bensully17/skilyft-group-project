@@ -18,9 +18,8 @@ class Profile extends Component {
           <PickImage style={styles.pickImage}/>
         </View>
         <View style={styles.inputContainer}>
-          <TextInput style={styles.textInput} placeholder='Name'/>
-          <TextInput style={styles.textInput} placeholder='Vehicle Year'/>
-          <TextInput style={styles.textInput} placeholder='Vehicle Make and Model'/>
+          <TextInput style={styles.textInput} placeholder='Full Name'/>
+          <TextInput style={styles.textInput} placeholder='Vehicle Year, Make, and Model'/>
         </View>
         <View style={styles.saveButton}>
           <Button title='Save' onPress={this.saveProfile}/>

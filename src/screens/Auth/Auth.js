@@ -5,8 +5,9 @@ import startDatePicker from '../Navigation/DatePickerIOS/DatePicker'
 import startNewAccount from '../Navigation/StartCreateAccount/startCreateAccount'
 import CustomButton from '../../components/CustomButton/CustomButton'
 import { connect } from 'react-redux'
-import validate from "../../utility/validation";
+import validate from "../../utility/validation"
 import { tryAuth } from '../../store/actions/index'
+
 class AuthScreen extends Component {
   state = {
     viewMode: Dimensions.get("window").height > 500 ? "portrait" : "landscape",
@@ -59,12 +60,8 @@ class AuthScreen extends Component {
       email: this.state.controls.email.value,
       password: this.state.controls.password.value
     };
-    this.props.onLogin(authData);
-    this.props.navigator.push({
-      screen: 'skilyft.PlanTripIOS',
-      backButtonHidden: false,
-      backButtonTitle: 'Login'
-    })  }
+    this.props.onLogin(authData, this.state.authMode);
+    }
 
   updateInputState = (key, value) => {
     let connectedValue = {};
@@ -114,7 +111,6 @@ class AuthScreen extends Component {
   newAccountHandler = () => {
     this.props.navigator.push({
       screen: 'skilyft.CreateAccountScreen',
-      animationType: 'fade',
       backButtonHidden: false,
       backButtonTitle: 'Login'
     })
@@ -186,7 +182,7 @@ const styles = StyleSheet.create({
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLogin: authData => dispatch(tryAuth(authData))
+    onLogin: (authData, authMode) => dispatch(tryAuth(authData, authMode))
   };
 };
 
