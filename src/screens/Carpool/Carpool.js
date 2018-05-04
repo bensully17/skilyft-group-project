@@ -14,12 +14,16 @@ export default class List extends Component {
       .then(response => this.setState({users: response['riders']}))
   }
   render() {
+    console.log('props: ', this.props.res.matches)
+    console.log('state: ', this.state.users);
+    
+    
     return (
       <Container>   
         <Header />
         <View>
           <DeckSwiper
-            dataSource={this.state.users}
+            dataSource={this.props.res.matches}
             renderItem={item =>
               <Card style={{ elevation: 3 }}>
                 <CardItem>

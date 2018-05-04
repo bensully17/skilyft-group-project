@@ -23,6 +23,10 @@ const MtnPicker = (props) => {
               <Picker.Item label="Keystone" value="Keystone" />
               <Picker.Item label="Breck" value="Breck" />
               <Picker.Item label="Winter Park" value="Winter Park" />
+              <Picker.Item label="Beaver Creek" value="Beaver Creek" />
+              <Picker.Item label="Copper Mountain" value="Copper Mountain" />
+              <Picker.Item label="Aspen" value="Aspen" />
+
             </Picker>
           </Form>
         </Content>

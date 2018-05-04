@@ -1,8 +1,12 @@
 
 import React, { Component } from 'react'
-import { View, Button, StyleSheet, Switch, Text, Picker, DatePickerIOS } from 'react-native'
+import { View, Button, StyleSheet, Switch, Text, Picker, DatePickerIOS, ImageBackground } from 'react-native'
+import image from '../../Assets/SkiLyftOverlay.png'
 import mainTabs from '../Navigation/MainTabs/startMainTabs'
 import MtnPicker from '../../components/Picker/MtnPicker'
+import { connect } from 'react-redux'
+import { changeDest, setDate, switchDrive } from '../../store/actions/index'
+import CustomButton from '../../components/CustomButton/CustomButton'
 const API_URL = 'https://skylift-db.herokuapp.com/riders/match'
 
 let departing
@@ -49,7 +53,6 @@ class PlanTrip extends Component {
         passProps: {res}
       })
     }) 
-    // mainTabs()
   }
 
   runSwitch = () => {
@@ -72,21 +75,23 @@ class PlanTrip extends Component {
 
   render() {
     return(
-      <View style={styles.container}>
-        <View style={styles.datePicker}>
-          <DatePickerIOS date={this.state.departing} onDateChange={this.setDate}/>  
+      <ImageBackground source={image} style={styles.image}>
+        <View style={styles.container}>
+          <View style={styles.datePicker}>
+            <DatePickerIOS date={this.state.departing} onDateChange={this.setDate}/>  
+          </View>
+          <View style={styles.mtnPicker}>
+            <MtnPicker currentMtn={this.state.destination} changed={this.destChangeHandler}/>
+          </View>
+          <View style={styles.drive}>
+            <Text style={styles.switchText}>Willing to drive?</Text>
+            <Switch value={this.state.drive} onValueChange={this.runSwitch}></Switch>
+          </View>
+          <View style={styles.button}>
+            <CustomButton title='Submit' onPress={this.startMainTabs} style={styles.customButton} color='#efefef'>Submit</CustomButton>
+          </View>
         </View>
-        <View style={styles.mtnPicker}>
-          <MtnPicker currentMtn={this.state.destination} changed={this.destChangeHandler}/>
-        </View>
-        <View style={styles.drive}>
-          <Text style={styles.switchText}>Willing to drive?</Text>
-          <Switch value={this.state.drive} onValueChange={this.runSwitch}></Switch>
-        </View>
-        <View style={styles.button}>
-          <Button title='Submit' onPress={this.startMainTabs}></Button>
-        </View>
-      </View>
+      </ImageBackground>
     )
     console.log(this.state.date)
   }
@@ -97,13 +102,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     flex: 1,
-    backgroundColor: 'lightblue'
+  },
+  customButton: {
+    backgroundColor: '#efefef',
+    
   },
   datePicker: {
     flex: 2
   },
   button: {
-    flex: 1
+    flex: 1,
+    width: '100%',
+    alignItems: 'center'
   },
   drive: {
     justifyContent: 'center',
@@ -112,13 +122,24 @@ const styles = StyleSheet.create({
     alignItems: 'center'  
   },
   switchText: {
-    paddingBottom: 10
+    paddingBottom: 10,
+    fontSize: 24
   },
   mtnPicker: {
     justifyContent: 'center',
     flex: 1,
     width: '100%',
     alignItems: 'center'  
+  },
+  image: {
+    flex: 1,
+    alignItems: 'center'
   }
 })
-export default PlanTrip
+
+const mapDispatchToProps = dispatch => {
+  return {
+
+  }
+}
+export default connect() (PlanTrip)
