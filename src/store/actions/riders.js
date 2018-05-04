@@ -1,4 +1,10 @@
-import { ADD_RIDER, CHANGE_DEST, SET_DATE, SWITCH_DRIVE } from './actionTypes'
+import { ADD_RIDER, CHANGE_DEST, SET_DATE, SWITCH_DRIVE, PICK_IMAGE } from './actionTypes'
+
+export const pickImage = () => {
+  return {
+    type: PICK_IMAGE,
+  }
+}
 
 export const addRider = () => {
   return {

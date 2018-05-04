@@ -7,28 +7,15 @@ class PickImage extends Component {
     pickedImage: null
   }
 
-  pickImageHandler = () => {
-    ImagePicker.showImagePicker({title: 'Select an Image'}, res => {
-      if (res.didCancel) {console.log('User Cancelled')}
-      else if (res.error) {
-        console.log('Error', res.error)
-      }
-      else {
-        this.setState({
-          pickedImage: { uri: res.uri, base64: res.data }
-        })
-      }
-    })
-  }
 
   render() {
     return (
      <View style={styles.container}>
        <View style={styles.placeholder}>
-         <Image source={this.state.pickedImage} style={styles.previewImage}></Image>
+         <Image source={this.props.selectedImage} style={styles.previewImage}></Image>
        </View>
        <View style={styles.button}>
-         <Button title='Pick Image' onPress={this.pickImageHandler}></Button>
+         <Button title='Pick Image' onPress={this.props.selectImage}></Button>
        </View>
      </View>
     );
@@ -45,7 +32,8 @@ const styles = StyleSheet.create({
     borderColor: "black",
     backgroundColor: "#eee",
     width: "80%",
-    height: '70%'
+    height: '70%',
+    borderRadius: 5
   },
   button: {
     margin: 8
@@ -53,7 +41,6 @@ const styles = StyleSheet.create({
   previewImage: {
       width: "100%",
       height: "100%",
-      borderRadius: 5
   }
 });
 

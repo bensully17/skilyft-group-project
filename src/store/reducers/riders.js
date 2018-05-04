@@ -1,18 +1,24 @@
-import { ADD_RIDER, CHANGE_DEST, SET_DATE, SWITCH_DRIVE } from '../actions/actionTypes'
+import { ADD_RIDER, CHANGE_DEST, SET_DATE, SWITCH_DRIVE, PICK_IMAGE } from '../actions/actionTypes'
 
 const initialState = {
   drive: false,
   departing: new Date(),
   destination: undefined,
-  imageUrl: "https://s3-us-west-1.amazonaws.com/skilyft-photos/skilyft-ben.jpg",
-  userName: "Ben",
-  firstName: "Ben",
-  lastName: "Sullivan",
-  vehicle: "2011 range rover sport"
+  imageUrl: null,
+  userName: null,
+  firstName: null,
+  lastName: null,
+  vehicle: null,
+  photoUri: null
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+      case PICK_IMAGE:
+        return {
+          ...state,
+          photoUri: action.image
+        }
       case ADD_RIDER:
         return {
           ...state,

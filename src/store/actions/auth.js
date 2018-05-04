@@ -1,4 +1,4 @@
-import { TRY_AUTH } from './actionTypes'
+import { TRY_AUTH, AUTH_SET_TOKEN } from './actionTypes'
 import TripPlanner from '../../screens/Navigation/DatePickerIOS/DatePicker'
 import Profile from '../../screens/Navigation/StartProfile/Profile'
 
@@ -26,13 +26,15 @@ export const tryAuth = (authData, authMode) => {
     })
     .then(res => res.json())
     .then(parsedRes => {
-      if (parsedRes.error) {
+      if (!parsedRes.idToken) {
         alert('Authentication failed, please try again.')
       }
       else if (authMode === 'login'){
+        dispatch(authSetToken(parsedRes.idToken))
         TripPlanner()
         }
       else if (authMode === 'signup'){
+        dispatch(authSetToken(parsedRes.idToken))
         Profile()
       }
       
@@ -40,4 +42,11 @@ export const tryAuth = (authData, authMode) => {
       
     })
   }
+}
+
+export const authSetToken = (token) => {
+  return({
+    type: AUTH_SET_TOKEN,
+    token: token
+  })
 }
