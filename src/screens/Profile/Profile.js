@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, TextInput, Button, ImageBackground } from 'react-native';
+import { View, Text, Image, StyleSheet, TextInput, Button, ImageBackground, KeyboardAvoidingView } from 'react-native';
 import ImagePicker from 'react-native-image-picker'
 import PickImage from '../../components/PickImage/PickImage'
 import image from '../../Assets/SkiLyftOverlay.png'
@@ -31,7 +31,7 @@ class Profile extends Component {
       
  
   pickImageHandler = () => {
-    ImagePicker.showImagePicker({title: 'Select an Image'}, res => {
+    ImagePicker.showImagePicker({title: 'Select an Image', maxWidth: 800, maxHeight: 600}, res => {
       if (res.didCancel) {console.log('User Cancelled')}
       else if (res.error) {
         console.log('Error', res.error)
@@ -67,7 +67,7 @@ class Profile extends Component {
   render () {
     return (
       <ImageBackground style={styles.ImageBackground} source={image}>
-        <View style={styles.container}>
+        <KeyboardAvoidingView style={styles.container} behavior='padding'>
           <View style={styles.pickImage}>
             <PickImage style={styles.pickImage} selectImage={this.pickImageHandler} selectedImage={this.state.selectedImage}/>
           </View>
@@ -78,7 +78,7 @@ class Profile extends Component {
           <View style={styles.saveButton}>
             <Button title='Save' onPress={this.saveProfile}/>
           </View>
-        </View>
+        </KeyboardAvoidingView>
       </ImageBackground>
     )    
   }

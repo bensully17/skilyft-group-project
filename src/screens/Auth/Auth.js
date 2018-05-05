@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Dimensions, Text, Button, TextInput, StyleSheet, ImageBackground} from 'react-native'
+import { View, Dimensions, Text, Button, TextInput, StyleSheet, ImageBackground, KeyboardAvoidingView} from 'react-native'
 import image from '../../Assets/SkiLyft1.png'
 import startDatePicker from '../Navigation/DatePickerIOS/DatePicker'
 import startNewAccount from '../Navigation/StartCreateAccount/startCreateAccount'
@@ -122,7 +122,7 @@ class AuthScreen extends Component {
 
     return (
       <ImageBackground source={image} style={styles.image}>
-        <View style={styles.container}>
+        <View style={styles.container} behavior='padding'>
             <CustomButton title='Create New Account' onPress={this.newAccountHandler} style={styles.input} color="#f7f7f7">Create A New Account</CustomButton>
             <View style={styles.inputContainer}>
               <TextInput placeholder='Email' style={styles.input} underlineColorAndroid='transparent' value={this.state.controls.email.value}onChangeText={val => this.updateInputState("email", val)}
