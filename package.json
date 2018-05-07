@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "newman run https://www.getpostman.com/collections/1a9c58a8ba37911e9c20"
   },
   "dependencies": {
     "@expo/vector-icons": "^6.3.1",
