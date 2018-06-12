@@ -3,6 +3,8 @@
 
 ## Group Members
 
+> Ben Sullivan
+
 > Adam Basila
 
 > Jacob Crane
@@ -11,7 +13,7 @@
 
 > Will Sheehan
 
-> Ben Sullivan
+
 
 ## Project Description
 > Ski Lyft is a mobile application that allows skiiers and boarders to hitch a ride with on the way to and from the mountains.
