@@ -1,6 +1,8 @@
 # SkiLyft
 ## Find a ride to the slopes
 
+![alt text](https://s3-us-west-1.amazonaws.com/bensgalvanizeprojects.com/Screen+Shot+2018-06-12+at+3.36.54+PM.png)
+
 ## Group Members
 
 > Ben Sullivan
@@ -40,4 +42,3 @@
 
 > HTML/CSS/JavaScript
 
-![alt text](https://s3-us-west-1.amazonaws.com/bensgalvanizeprojects.com/Screen+Shot+2018-06-12+at+3.36.54+PM.png)
